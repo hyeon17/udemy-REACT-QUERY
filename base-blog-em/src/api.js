@@ -8,8 +8,12 @@ export async function fetchPosts(pageNum = 1) {
 }
 
 export async function fetchComments(postId) {
-	const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
-	return response.json();
+	try {
+		const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
+		return response.json();
+	} catch (error) {
+		throw new Error(error);
+	}
 }
 
 export async function deletePost(postId) {
